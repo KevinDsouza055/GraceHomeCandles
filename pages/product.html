@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title id="page-title">Product — Grace Home Candles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+<div id="page-loader" class="page-loader" role="status">
+  <div><div class="loader-logo">Grace <span>Home</span></div><div class="loader-bar"></div></div>
+</div>
+
+<div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+<aside id="cart-drawer" class="cart-drawer" aria-hidden="true" aria-label="Shopping Cart">
+  <div class="cart-header">
+    <h2 class="cart-title">Your Cart</h2>
+    <button class="cart-close" data-cart-close aria-label="Close cart">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-amount" id="cart-subtotal">₹0</span>
+    </div>
+    <p class="cart-shipping-note" id="cart-shipping-note"></p>
+    <div class="cart-actions">
+      <a href="checkout.html" class="btn btn-primary btn-full"><span>Proceed to Checkout</span></a>
+    </div>
+  </div>
+</aside>
+
+<nav id="mobile-nav" class="mobile-nav">
+  <button id="mobile-nav-close" class="mobile-nav-close">✕</button>
+  <a href="../index.html" class="mobile-nav-link">Home</a>
+  <a href="shop.html" class="mobile-nav-link">Shop</a>
+  <a href="about.html" class="mobile-nav-link">Our Story</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+</nav>
+
+<header id="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <nav class="nav-left">
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="gifting.html" class="nav-link">Gifting</a>
+      </nav>
+      <a href="../index.html" class="nav-logo">Grace <span>Home</span></a>
+      <div class="nav-right">
+        <a href="contact.html" class="nav-link">Contact</a>
+        <button class="nav-icon-btn" data-cart-open aria-label="Open cart">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+          <span class="cart-count"></span>
+        </button>
+        <button class="hamburger" id="mobile-nav-toggle" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main style="padding-top:80px">
+  <div class="container">
+    <nav class="breadcrumb" style="padding-top:32px" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href="shop.html">Shop</a>
+      <span class="breadcrumb-sep">/</span>
+      <span id="breadcrumb-product" aria-current="page">Product</span>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="product-detail" id="product-detail">
+      <div style="text-align:center;padding:80px 0">
+        <p class="body-lg">Loading...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <section style="background:var(--cream);padding:80px 0">
+    <div class="container">
+      <div class="section-header centered" style="margin-bottom:48px">
+        <p class="overline">You may also love</p>
+        <h2 class="display-sm">Related Candles</h2>
+      </div>
+      <div class="products-grid" id="related-grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="padding:32px 0">
+      <p>© <span id="current-year"></span> Grace Home Candles. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="return-policy.html">Returns</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+<script src="../js/products.js"></script>
+<script src="../js/core.js"></script>
+<script>
+document.getElementById('current-year').textContent = new Date().getFullYear();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const product = PRODUCTS.find(p => p.id === id);
+
+  if (!product) {
+    document.getElementById('product-detail').innerHTML = `
+      <div style="text-align:center;padding:80px;grid-column:1/-1">
+        <h2 class="display-sm" style="margin-bottom:16px">Product not found</h2>
+        <a href="shop.html" class="btn btn-outline"><span>Back to Shop</span></a>
+      </div>`;
+    return;
+  }
+
+  document.getElementById('page-title').textContent = `${product.name} — Grace Home Candles`;
+  document.getElementById('breadcrumb-product').textContent = product.name;
+
+  const savings = product.originalPrice - product.salePrice;
+  const pct = Math.round((savings / product.originalPrice) * 100);
+  const badges = product.badges.map(b =>
+    `<span class="badge badge-${b.toLowerCase().replace(' ','')}">${b}</span>`).join(' ');
+
+  const thumbs = product.images.map((img, i) => `
+    <div class="product-thumb ${i===0?'active':''}" data-img="${img}" data-idx="${i}">
+      <img src="${img}" alt="${product.name} view ${i+1}" loading="lazy">
+    </div>`).join('');
+
+  document.getElementById('product-detail').innerHTML = `
+    <div class="product-gallery">
+      <div class="product-main-image" id="main-image-wrap">
+        <img id="main-image" src="${product.images[0]}" alt="${product.name}" loading="eager">
+      </div>
+      <div class="product-thumbs">${thumbs}</div>
+    </div>
+    <div class="product-info">
+      <div style="margin-bottom:12px">${badges}</div>
+      <p class="overline">${product.notes}</p>
+      <h1 class="display-md" style="margin-bottom:16px">${product.name}</h1>
+      <div class="product-pricing">
+        <span class="price-sale">₹${product.salePrice.toLocaleString('en-IN')}</span>
+        <span class="price-original">₹${product.originalPrice.toLocaleString('en-IN')}</span>
+        <span class="price-savings">Save ${pct}%</span>
+      </div>
+      <p class="product-desc">${product.description}</p>
+      <div class="product-specs">
+        <div class="spec-row"><span class="spec-label">Top Notes</span><span class="spec-value">${product.fragrance.top}</span></div>
+        <div class="spec-row"><span class="spec-label">Heart Notes</span><span class="spec-value">${product.fragrance.mid}</span></div>
+        <div class="spec-row"><span class="spec-label">Base Notes</span><span class="spec-value">${product.fragrance.base}</span></div>
+        <div class="spec-row"><span class="spec-label">Burn Time</span><span class="spec-value">${product.burnTime}</span></div>
+        <div class="spec-row"><span class="spec-label">Size</span><span class="spec-value">${product.size}</span></div>
+        <div class="spec-row"><span class="spec-label">Wax</span><span class="spec-value">${product.wax}</span></div>
+        <div class="spec-row"><span class="spec-label">Wick</span><span class="spec-value">${product.wick}</span></div>
+      </div>
+      <div class="product-actions">
+        <button class="btn btn-primary btn-lg btn-full"
+          onclick="Cart.add({id:'${product.id}',name:'${product.name}',notes:'${product.notes}',price:${product.salePrice},originalPrice:${product.originalPrice},image:'${product.images[0]}'})">
+          <span>Add to Cart — ₹${product.salePrice.toLocaleString('en-IN')}</span>
+        </button>
+        <a href="checkout.html" class="btn btn-outline btn-lg btn-full"><span>Buy Now</span></a>
+      </div>
+      <div class="product-assurances">
+        <div class="assurance-item">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+          Free shipping on ₹999+
+        </div>
+        <div class="assurance-item">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+          7-day returns
+        </div>
+        <div class="assurance-item">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          Secure checkout
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Thumbnail click
+  document.querySelectorAll('.product-thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      document.getElementById('main-image').src = thumb.dataset.img;
+      document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+  });
+
+  // Related products
+  const related = PRODUCTS.filter(p => p.id !== id).slice(0, 3);
+  const relGrid = document.getElementById('related-grid');
+  if (relGrid) {
+    relGrid.innerHTML = related.map((p, i) => renderProductCard(p, i)).join('');
+    relGrid.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('button')) return;
+        window.location.href = `product.html?id=${card.dataset.productId}`;
+      });
+    });
+    ScrollReveal.init();
+  }
+});
+</script>
+</body>
+</html>

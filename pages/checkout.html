@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Checkout — Grace Home Candles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .shipping-badge {
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--cream);border:1px solid var(--border);
+      padding:6px 12px;font-size:11px;letter-spacing:0.08em;
+      color:var(--muted);transition:all 0.3s;
+    }
+    .shipping-badge.loading { opacity:0.5; }
+    .shipping-badge.free    { color:var(--gold);border-color:var(--gold);background:rgba(184,150,90,0.07); }
+    .shipping-badge .dot    { width:6px;height:6px;border-radius:50%;background:var(--sand); }
+    .shipping-badge.free .dot { background:var(--gold); }
+    .shipping-spinner { display:inline-block;width:12px;height:12px;border:2px solid var(--sand);border-top-color:var(--gold);border-radius:50%;animation:spin 0.7s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .pincode-row { position:relative; }
+    .pincode-check { position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--gold); }
+    .form-control:focus { box-shadow:0 0 0 2px rgba(184,150,90,0.15); }
+    .required-star { color:var(--gold); }
+  </style>
+</head>
+<body>
+
+<div id="page-loader" class="page-loader" role="status">
+  <div><div class="loader-logo">Grace <span>Home</span></div><div class="loader-bar"></div></div>
+</div>
+
+<header id="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <div></div>
+      <a href="../index.html" class="nav-logo" aria-label="Grace Home Candles">Grace <span>Home</span></a>
+      <div style="display:flex;align-items:center;justify-content:flex-end">
+        <a href="shop.html" style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">← Back to Shop</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Progress Steps -->
+<div style="background:var(--cream);border-bottom:1px solid var(--border);padding:14px 0;margin-top:68px">
+  <div class="container">
+    <ol style="display:flex;align-items:center;justify-content:center;gap:8px;list-style:none;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)">
+      <li style="color:var(--muted)">Cart</li>
+      <li style="color:var(--sand)" aria-hidden="true">——</li>
+      <li style="color:var(--gold);font-weight:500" aria-current="step">Details</li>
+      <li style="color:var(--sand)" aria-hidden="true">——</li>
+      <li>Payment</li>
+      <li style="color:var(--sand)" aria-hidden="true">——</li>
+      <li>Confirmation</li>
+    </ol>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <div class="checkout-layout">
+
+      <!-- ── LEFT: Form ─────────────────────────────── -->
+      <div>
+        <div id="empty-cart-msg" style="display:none;text-align:center;padding:80px 0">
+          <p class="display-sm" style="margin-bottom:20px">Your cart is empty</p>
+          <a href="shop.html" class="btn btn-primary"><span>Explore Collection</span></a>
+        </div>
+
+        <div id="checkout-form-wrap">
+          <div style="margin-bottom:36px;padding-top:40px">
+            <p class="checkout-step">Step 01</p>
+            <h1 class="checkout-section-title">Delivery Details</h1>
+          </div>
+
+          <form id="checkout-form" novalidate autocomplete="on">
+
+            <!-- Personal Info -->
+            <fieldset style="border:none;padding:0;margin-bottom:32px">
+              <legend style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block;width:100%">
+                Personal Information
+              </legend>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="full-name">Full Name <span class="required-star">*</span></label>
+                  <input type="text" id="full-name" name="fullName" class="form-control"
+                    placeholder="Priya Sharma" required autocomplete="name" maxlength="100" spellcheck="false">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="phone">Phone <span class="required-star">*</span></label>
+                  <input type="tel" id="phone" name="phone" class="form-control"
+                    placeholder="98XXXXXXXX" required autocomplete="tel" maxlength="10" inputmode="numeric">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email <span class="required-star">*</span></label>
+                <input type="email" id="email" name="email" class="form-control"
+                  placeholder="priya@example.com" required autocomplete="email" maxlength="150">
+              </div>
+            </fieldset>
+
+            <!-- Shipping Address -->
+            <fieldset style="border:none;padding:0;margin-bottom:32px">
+              <legend style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block;width:100%">
+                Shipping Address
+              </legend>
+              <div class="form-group">
+                <label class="form-label" for="address">Street Address <span class="required-star">*</span></label>
+                <input type="text" id="address" name="address" class="form-control"
+                  placeholder="Flat / House No., Building, Street" required autocomplete="street-address" maxlength="200">
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="city">City <span class="required-star">*</span></label>
+                  <input type="text" id="city" name="city" class="form-control"
+                    placeholder="Mumbai" required autocomplete="address-level2" maxlength="80">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="state">State <span class="required-star">*</span></label>
+                  <select id="state" name="state" class="form-control" required autocomplete="address-level1">
+                    <option value="">Select State</option>
+                    <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+                    <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option>
+                    <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+                    <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+                    <option>Madhya Pradesh</option><option selected>Maharashtra</option>
+                    <option>Manipur</option><option>Meghalaya</option><option>Mizoram</option>
+                    <option>Nagaland</option><option>Odisha</option><option>Punjab</option>
+                    <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option>
+                    <option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option>
+                    <option>Uttarakhand</option><option>West Bengal</option><option>Delhi</option>
+                    <option>Chandigarh</option><option>Jammu & Kashmir</option>
+                    <option>Ladakh</option><option>Puducherry</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Pincode with live shipping calc -->
+              <div class="form-row">
+                <div class="form-group pincode-row">
+                  <label class="form-label" for="pincode">Pincode <span class="required-star">*</span></label>
+                  <input type="text" id="pincode" name="pincode" class="form-control"
+                    placeholder="400001" required autocomplete="postal-code"
+                    maxlength="6" inputmode="numeric" pattern="[1-9][0-9]{5}">
+                  <span class="pincode-check" id="pincode-check" style="display:none">✓</span>
+                </div>
+                <div class="form-group" style="display:flex;flex-direction:column;justify-content:flex-end">
+                  <div id="shipping-estimate" style="padding-bottom:4px">
+                    <span class="shipping-badge" id="shipping-badge" style="display:none"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Serviceability message -->
+              <div id="serviceability-msg" style="display:none;font-size:12px;margin-top:-10px;margin-bottom:16px;padding:8px 12px;border-radius:2px"></div>
+            </fieldset>
+
+            <!-- Optional -->
+            <fieldset style="border:none;padding:0;margin-bottom:32px">
+              <legend style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block;width:100%">
+                Optional
+              </legend>
+              <div class="form-group">
+                <label class="form-label" for="gift-message">Gift Message</label>
+                <textarea id="gift-message" name="giftMessage" class="form-control"
+                  placeholder="Write a personal message for the recipient..." maxlength="300" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="order-notes">Order Notes</label>
+                <textarea id="order-notes" name="orderNotes" class="form-control"
+                  placeholder="Any special instructions..." maxlength="300" rows="2"></textarea>
+              </div>
+            </fieldset>
+
+            <!-- Errors -->
+            <div id="form-errors" style="display:none;background:#FDF2F2;border:1px solid #F5C6CB;border-left:3px solid #C0665A;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#721C24" role="alert" aria-live="assertive"></div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-full" id="pay-btn">
+              <span id="pay-btn-text">Proceed to Payment</span>
+            </button>
+
+            <p style="font-size:11px;color:var(--muted);margin-top:14px;text-align:center;line-height:1.7">
+              By placing your order you agree to our
+              <a href="terms.html" style="color:var(--gold);text-decoration:underline" target="_blank">Terms</a>
+              &amp; <a href="privacy-policy.html" style="color:var(--gold);text-decoration:underline" target="_blank">Privacy Policy</a>.
+              All payments secured by Razorpay.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- ── RIGHT: Order Summary ────────────────────── -->
+      <aside class="checkout-summary" aria-label="Order summary">
+        <p class="checkout-step">Order Summary</p>
+        <div class="order-summary-items" id="summary-items"></div>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summary-subtotal">₹0</span>
+        </div>
+        <div class="summary-row" id="shipping-row">
+          <span>Shipping <span id="shipping-label-text" style="font-size:10px;color:var(--sand)"></span></span>
+          <span id="summary-shipping">—</span>
+        </div>
+        <div class="summary-total">
+          <span class="summary-total-label">Total (INR)</span>
+          <span class="summary-total-amount" id="summary-total">₹0</span>
+        </div>
+
+        <p id="free-ship-progress" style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center"></p>
+
+        <div class="razorpay-notice" style="margin-top:20px">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:16px;height:16px;color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+          256-bit SSL · Secured by Razorpay
+        </div>
+
+        <!-- Trust badges -->
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)">
+            <svg style="width:15px;height:15px;color:var(--gold);flex-shrink:0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/></svg>
+            Luxury gift packaging included
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)">
+            <svg style="width:15px;height:15px;color:var(--gold);flex-shrink:0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+            7-day hassle-free returns
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:11px;color:var(--muted)">
+            <svg style="width:15px;height:15px;color:var(--gold);flex-shrink:0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/></svg>
+            Dispatched within 1–2 business days
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+<div id="toast-container" class="toast-container" aria-live="polite"></div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="../js/products.js"></script>
+<script src="../js/core.js"></script>
+<script>
+/* ── Checkout Page Logic ─────────────────────── */
+let currentShipping = { charge: CONFIG.BASE_SHIPPING, label: 'Standard Shipping' };
+
+function renderSummary(shippingCharge, shippingLabel) {
+  const items = Cart.items;
+  const emptyMsg  = document.getElementById('empty-cart-msg');
+  const formWrap  = document.getElementById('checkout-form-wrap');
+  const summaryEl = document.getElementById('summary-items');
+
+  if (!items || items.length === 0) {
+    if (emptyMsg)  emptyMsg.style.display  = 'block';
+    if (formWrap)  formWrap.style.display  = 'none';
+    if (summaryEl) summaryEl.innerHTML = '<p class="body-sm" style="padding:16px 0">No items.</p>';
+    return;
+  }
+
+  summaryEl.innerHTML = items.map(i => `
+    <div class="summary-item">
+      <span class="summary-item-name">${Security.sanitize(i.name)} <span style="color:var(--muted)">×${i.qty}</span></span>
+      <span class="summary-item-price">₹${(i.price * i.qty).toLocaleString('en-IN')}</span>
+    </div>`).join('');
+
+  const subtotal = Cart.total();
+  const shipping = shippingCharge !== undefined ? shippingCharge : currentShipping.charge;
+  const label    = shippingLabel  || currentShipping.label;
+  const total    = subtotal + shipping;
+
+  document.getElementById('summary-subtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+  document.getElementById('summary-shipping').textContent = shipping === 0 ? 'Free' : `₹${shipping}`;
+  document.getElementById('summary-total').textContent    = `₹${total.toLocaleString('en-IN')}`;
+
+  const labelEl = document.getElementById('shipping-label-text');
+  if (labelEl) labelEl.textContent = label ? `(${label})` : '';
+
+  const progressEl = document.getElementById('free-ship-progress');
+  if (progressEl) {
+    const remaining = CONFIG.FREE_SHIP_ABOVE - subtotal;
+    progressEl.textContent = remaining <= 0
+      ? '✓ You qualify for free shipping!'
+      : `Add ₹${remaining.toLocaleString('en-IN')} more for free shipping`;
+    progressEl.style.color = remaining <= 0 ? 'var(--gold)' : 'var(--muted)';
+  }
+}
+
+/* Live shipping calculation on pincode input */
+let pincodeTimer = null;
+async function handlePincodeInput(pincode) {
+  const badge  = document.getElementById('shipping-badge');
+  const check  = document.getElementById('pincode-check');
+  const svcMsg = document.getElementById('serviceability-msg');
+
+  if (!Security.validatePincode(pincode)) {
+    if (badge) badge.style.display = 'none';
+    if (check) check.style.display = 'none';
+    if (svcMsg) svcMsg.style.display = 'none';
+    renderSummary(CONFIG.BASE_SHIPPING, '');
+    return;
+  }
+
+  // Show loading
+  if (badge) {
+    badge.style.display = 'inline-flex';
+    badge.className = 'shipping-badge loading';
+    badge.innerHTML = '<span class="shipping-spinner"></span> Calculating...';
+  }
+  if (check) check.style.display = 'none';
+  if (svcMsg) svcMsg.style.display = 'none';
+
+  const subtotal = Cart.total();
+  const info = await DeliveryEngine.getShipping(pincode, subtotal);
+  currentShipping = info;
+
+  if (badge) {
+    badge.style.display = 'inline-flex';
+    badge.className = `shipping-badge${info.charge === 0 ? ' free' : ''}`;
+    const distText = info.distance ? ` · ~${info.distance}km` : '';
+    badge.innerHTML = `<span class="dot"></span>${info.charge === 0 ? 'Free Shipping' : `₹${info.charge}`}${distText} — ${info.label}`;
+  }
+  if (check) check.style.display = 'block';
+
+  renderSummary(info.charge, info.label);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderSummary(CONFIG.BASE_SHIPPING, '');
+
+  const pincodeInput = document.getElementById('pincode');
+  if (pincodeInput) {
+    pincodeInput.addEventListener('input', e => {
+      const val = e.target.value.replace(/\D/g,'').substring(0,6);
+      e.target.value = val;
+      clearTimeout(pincodeTimer);
+      if (val.length === 6) {
+        pincodeTimer = setTimeout(() => handlePincodeInput(val), 400);
+      } else {
+        const badge = document.getElementById('shipping-badge');
+        if (badge) badge.style.display = 'none';
+        document.getElementById('pincode-check').style.display = 'none';
+      }
+    });
+  }
+
+  // Phone number filter (digits only)
+  const phoneInput = document.getElementById('phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', e => {
+      e.target.value = e.target.value.replace(/\D/g,'').substring(0,10);
+    });
+  }
+
+  /* Form submission */
+  const form    = document.getElementById('checkout-form');
+  const errorsEl= document.getElementById('form-errors');
+  const payBtn  = document.getElementById('pay-btn');
+  const payText = document.getElementById('pay-btn-text');
+
+  function showErrors(msgs) {
+    errorsEl.innerHTML = msgs.map(m => `<div style="margin:2px 0">• ${Security.sanitize(m)}</div>`).join('');
+    errorsEl.style.display = 'block';
+    errorsEl.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    errorsEl.style.display = 'none';
+
+    const name   = document.getElementById('full-name').value.trim();
+    const phone  = document.getElementById('phone').value.trim();
+    const email  = document.getElementById('email').value.trim();
+    const addr   = document.getElementById('address').value.trim();
+    const city   = document.getElementById('city').value.trim();
+    const state  = document.getElementById('state').value;
+    const pin    = document.getElementById('pincode').value.trim();
+    const gift   = document.getElementById('gift-message').value.trim();
+    const notes  = document.getElementById('order-notes').value.trim();
+
+    const errors = [];
+    if (!name || name.length < 2)             errors.push('Please enter your full name (min 2 characters).');
+    if (!Security.validatePhone(phone))       errors.push('Please enter a valid 10-digit Indian mobile number (starting with 6–9).');
+    if (!Security.validateEmail(email))       errors.push('Please enter a valid email address.');
+    if (!addr || addr.length < 5)             errors.push('Please enter your complete street address.');
+    if (!city || city.length < 2)             errors.push('Please enter your city.');
+    if (!state)                               errors.push('Please select your state.');
+    if (!Security.validatePincode(pin))       errors.push('Please enter a valid 6-digit pincode.');
+    if (Cart.items.length === 0)              errors.push('Your cart is empty. Please add items before checkout.');
+
+    if (errors.length) { showErrors(errors); return; }
+
+    payText.textContent = 'Opening Payment...';
+    payBtn.disabled = true;
+
+    try {
+      await Checkout.initPayment({ name, phone, email, address: addr, city, state, pincode: pin, giftMessage: gift, notes });
+    } catch (err) {
+      Toast.show('Could not initiate payment. Please try again.', 'error');
+    } finally {
+      payText.textContent = 'Proceed to Payment';
+      payBtn.disabled = false;
+    }
+  });
+});
+</script>
+</body>
+</html>

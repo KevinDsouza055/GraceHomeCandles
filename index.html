@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Grace Home Candles — Hand-poured luxury candles crafted with premium fragrance oils. Discover our collection of artisan candles for your home.">
+  <meta name="keywords" content="luxury candles, hand-poured candles, premium candles, scented candles, home fragrance, India">
+  <meta name="author" content="Grace Home Candles">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Grace Home Candles — Luxury Hand-Poured Candles">
+  <meta property="og:description" content="Artisan luxury candles crafted with intention. Premium fragrance oils, sustainable materials.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gracehomecandles.in">
+  <meta name="theme-color" content="#FAF8F4">
+  <!-- Security Headers (set server-side; listed here for reference) -->
+  <!-- X-Content-Type-Options: nosniff -->
+  <!-- X-Frame-Options: DENY -->
+  <!-- X-XSS-Protection: 1; mode=block -->
+  <!-- Referrer-Policy: strict-origin-when-cross-origin -->
+  <title>Grace Home Candles — Luxury Hand-Poured Candles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="canonical" href="https://gracehomecandles.in/">
+</head>
+<body>
+
+<!-- Page Loader -->
+<div id="page-loader" class="page-loader" role="status" aria-label="Loading">
+  <div>
+    <div class="loader-logo">Grace <span>Home</span></div>
+    <div class="loader-bar"></div>
+  </div>
+</div>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay" class="cart-overlay" aria-hidden="true"></div>
+
+<!-- Cart Drawer -->
+<aside id="cart-drawer" class="cart-drawer" aria-hidden="true" aria-label="Shopping Cart">
+  <div class="cart-header">
+    <h2 class="cart-title">Your Cart</h2>
+    <button class="cart-close" data-cart-close aria-label="Close cart">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Subtotal</span>
+      <span class="cart-subtotal-amount" id="cart-subtotal">₹0</span>
+    </div>
+    <p class="cart-shipping-note" id="cart-shipping-note"></p>
+    <div class="cart-actions">
+      <a href="pages/checkout.html" class="btn btn-primary btn-full"><span>Proceed to Checkout</span></a>
+      <a href="pages/shop.html" class="btn btn-ghost" style="text-align:center">Continue Shopping</a>
+    </div>
+  </div>
+</aside>
+
+<!-- Mobile Navigation -->
+<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
+  <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Close menu">✕</button>
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="pages/shop.html" class="mobile-nav-link">Shop</a>
+  <a href="pages/about.html" class="mobile-nav-link">Our Story</a>
+  <a href="pages/gifting.html" class="mobile-nav-link">Gifting</a>
+  <a href="pages/contact.html" class="mobile-nav-link">Contact</a>
+</nav>
+
+<!-- Site Header -->
+<header id="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+      <nav class="nav-left" aria-label="Primary navigation">
+        <a href="pages/shop.html" class="nav-link">Shop</a>
+        <a href="pages/about.html" class="nav-link">Our Story</a>
+        <a href="pages/gifting.html" class="nav-link">Gifting</a>
+      </nav>
+
+      <a href="index.html" class="nav-logo" aria-label="Grace Home Candles — Home">
+        Grace <span>Home</span>
+      </a>
+
+      <div class="nav-right">
+        <a href="pages/contact.html" class="nav-link">Contact</a>
+        <button class="nav-icon-btn" data-cart-open aria-label="Open cart">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/>
+          </svg>
+          <span class="cart-count" aria-label="Cart items"></span>
+        </button>
+        <button class="hamburger" id="mobile-nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ─────────────────────────────────────────── -->
+<section class="hero" aria-labelledby="hero-headline">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="hero-overline reveal">Hand-poured in India · Since 2021</p>
+        <h1 id="hero-headline" class="display-xl hero-headline reveal reveal-delay-1">
+          Light<br><em>that</em><br>lingers
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          Luxury candles crafted with rare fragrance oils and sustainably sourced wax. Each flame is an invitation to slow down.
+        </p>
+        <div class="hero-cta reveal reveal-delay-3">
+          <a href="pages/shop.html" class="btn btn-primary btn-lg"><span>Explore Collection</span></a>
+          <a href="pages/about.html" class="btn btn-ghost">Our Story →</a>
+        </div>
+        <div class="hero-scroll reveal reveal-delay-4" aria-hidden="true">Scroll to discover</div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-image-wrap">
+          <img src="https://images.unsplash.com/photo-1602523961358-f9f03dd557db?w=900&q=85"
+               alt="Luxury candle in amber glass" loading="eager" fetchpriority="high">
+          <div class="hero-badge">
+            <div class="hero-badge-num">5</div>
+            <div class="hero-badge-text">Signature<br>Fragrances</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARQUEE / TICKER ──────────────────────────────── -->
+<div style="background:var(--espresso);padding:14px 0;overflow:hidden;white-space:nowrap" aria-hidden="true">
+  <div style="display:inline-flex;gap:60px;animation:marquee 30s linear infinite;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.5)">
+    <span>Hand-poured</span><span style="color:var(--gold)">·</span>
+    <span>60–80 Hour Burn</span><span style="color:var(--gold)">·</span>
+    <span>Premium Fragrance Oils</span><span style="color:var(--gold)">·</span>
+    <span>Sustainable Coconut-Soy Wax</span><span style="color:var(--gold)">·</span>
+    <span>Free Shipping on ₹999+</span><span style="color:var(--gold)">·</span>
+    <span>Luxury Gift Packaging</span><span style="color:var(--gold)">·</span>
+    <span>Hand-poured</span><span style="color:var(--gold)">·</span>
+    <span>60–80 Hour Burn</span><span style="color:var(--gold)">·</span>
+    <span>Premium Fragrance Oils</span><span style="color:var(--gold)">·</span>
+    <span>Sustainable Coconut-Soy Wax</span><span style="color:var(--gold)">·</span>
+    <span>Free Shipping on ₹999+</span><span style="color:var(--gold)">·</span>
+    <span>Luxury Gift Packaging</span>
+  </div>
+</div>
+<style>
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+
+<!-- ── FEATURED COLLECTION ───────────────────────────── -->
+<section class="section-pad" id="collection" aria-labelledby="collection-title">
+  <div class="container">
+    <div class="section-header centered">
+      <p class="overline reveal">The Collection</p>
+      <h2 id="collection-title" class="display-lg reveal reveal-delay-1">Five Signatures</h2>
+      <div class="divider reveal reveal-delay-2"></div>
+      <p class="body-lg reveal reveal-delay-3">Each scent is a world. Each candle, a ritual.</p>
+    </div>
+
+    <div class="products-grid" id="featured-products-grid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <div style="text-align:center;margin-top:52px" class="reveal">
+      <a href="pages/shop.html" class="btn btn-outline btn-lg"><span>View All Candles</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRAND ATTRIBUTES ──────────────────────────────── -->
+<section style="background:var(--cream);padding:80px 0" aria-labelledby="features-title">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-item reveal">
+        <div class="feature-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Hand-Poured</h3>
+        <p class="body-sm">Every candle is poured by hand in small batches — never mass-produced, always mindful.</p>
+      </div>
+      <div class="feature-item reveal reveal-delay-1">
+        <div class="feature-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Premium Oils</h3>
+        <p class="body-sm">We source only the finest fragrance oils from renowned perfume houses — no compromises.</p>
+      </div>
+      <div class="feature-item reveal reveal-delay-2">
+        <div class="feature-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">60–80 Hour Burn</h3>
+        <p class="body-sm">Our proprietary wax formula ensures an extraordinarily long, even burn that fills every corner.</p>
+      </div>
+      <div class="feature-item reveal reveal-delay-3">
+        <div class="feature-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.893 13.393l-1.135-1.135a2.252 2.252 0 01-.421-.585l-1.08-2.16a.414.414 0 00-.663-.107.827.827 0 01-.812.21l-1.273-.363a.89.89 0 00-.738 1.595l.587.39c.59.395.674 1.23.172 1.732l-.2.2c-.211.212-.33.498-.33.796v.41c0 .409-.11.809-.32 1.158l-1.315 2.191a2.11 2.11 0 01-1.81 1.025 1.055 1.055 0 01-1.055-1.055v-1.172c0-.92-.56-1.747-1.414-2.089l-.654-.261a2.25 2.25 0 01-1.384-2.46l.007-.042a2.25 2.25 0 01.29-.787l.09-.15a2.25 2.25 0 012.37-1.048l1.178.236a1.125 1.125 0 001.302-.795l.208-.73a1.125 1.125 0 00-.578-1.315l-.665-.332-.091.091a2.25 2.25 0 01-1.591.659h-.18c-.249 0-.487.1-.662.274a.931.931 0 01-1.458-1.137l1.411-2.353a2.25 2.25 0 00.286-.76m11.928 9.869A9 9 0 008.965 3.525m11.928 9.868A9 9 0 118.965 3.525"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Sustainable</h3>
+        <p class="body-sm">Coconut-soy blend wax, lead-free cotton wicks, recyclable packaging — beauty with conscience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BRAND STORY ───────────────────────────────────── -->
+<section class="section-pad" aria-labelledby="story-title">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-image" aria-hidden="true">
+        <div class="story-image-main">
+          <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=800&q=85"
+               alt="Grace Home Candle craftsmanship" loading="lazy">
+        </div>
+        <div class="story-image-accent">
+          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&q=85"
+               alt="Candle detail" loading="lazy">
+        </div>
+      </div>
+      <div class="story-text">
+        <p class="overline reveal">Our Story</p>
+        <h2 id="story-title" class="display-lg reveal reveal-delay-1">Born from a love<br>of <em>stillness</em></h2>
+        <div class="divider divider-left reveal reveal-delay-2"></div>
+        <p class="body-lg reveal reveal-delay-2">
+          Grace Home began in a small Mumbai studio in 2021, born from one woman's belief that every home deserves a moment of ceremony — a light, a scent, a pause.
+        </p>
+        <div class="story-quote reveal reveal-delay-3">
+          <p>"We don't just make candles. We make the quiet moments between the loud ones."</p>
+        </div>
+        <p class="body-md reveal reveal-delay-3">
+          Each Grace Home candle is hand-poured in small batches, using a proprietary coconut-soy wax blend that burns slower, cleaner, and more beautifully than conventional alternatives. We work with fragrance houses across India and Europe to source only the most exceptional oils.
+        </p>
+        <a href="pages/about.html" class="btn btn-ghost reveal reveal-delay-4" style="margin-top:28px">Read Our Full Story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────────────── -->
+<section class="testimonials-wrap" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="section-header centered" style="margin-bottom:52px">
+      <p class="overline reveal" style="color:var(--gold-light)">What They Say</p>
+      <h2 id="testimonials-title" class="display-lg reveal reveal-delay-1" style="color:var(--ivory)">Loved by many</h2>
+    </div>
+    <div class="testimonials-grid">
+      <article class="testimonial-item reveal">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Velvet Vanilla is unlike anything I've burned before. The throw is extraordinary — my entire apartment smells like luxury. I've already ordered three more."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true" style="background:var(--sand)"></div>
+          <div>
+            <p class="testimonial-name">Priya S.</p>
+            <p class="testimonial-loc">Mumbai, Maharashtra</p>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-item reveal reveal-delay-1">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Gifted Midnight Oud to my mother and she called me the moment she lit it. The packaging alone felt like unwrapping a luxury gift. Truly exceptional quality."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true" style="background:var(--bronze)"></div>
+          <div>
+            <p class="testimonial-name">Arjun M.</p>
+            <p class="testimonial-loc">Bengaluru, Karnataka</p>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-item reveal reveal-delay-2">
+        <div class="testimonial-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testimonial-text">"Cashmere Rose is my daily ritual now. The burn is incredibly even and the fragrance is so authentic — not synthetic at all. Grace Home has spoiled me for all other candles."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" aria-hidden="true" style="background:var(--champagne)"></div>
+          <div>
+            <p class="testimonial-name">Ananya K.</p>
+            <p class="testimonial-loc">Delhi, NCR</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── GIFTING ────────────────────────────────────────── -->
+<section class="gifting-section" aria-labelledby="gifting-title">
+  <div class="container">
+    <div class="gifting-grid">
+      <div class="gifting-text">
+        <p class="overline reveal">Luxury Gifting</p>
+        <h2 id="gifting-title" class="display-lg reveal reveal-delay-1">The gift of<br><em>atmosphere</em></h2>
+        <div class="divider divider-left reveal reveal-delay-1"></div>
+        <p class="body-lg reveal reveal-delay-2">
+          Our signature gift sets are curated for those who appreciate the extraordinary. Every piece is wrapped in archival tissue and nestled in our signature rigid box.
+        </p>
+        <div class="reveal reveal-delay-2">
+          <div class="gifting-feature">
+            <div class="gifting-feat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="gifting-feat-title">Signature Gift Boxes</p>
+              <p class="body-sm">Hand-finished rigid boxes in our signature champagne palette. Perfect for celebrations.</p>
+            </div>
+          </div>
+          <div class="gifting-feature">
+            <div class="gifting-feat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"/>
+              </svg>
+            </div>
+            <div>
+              <p class="gifting-feat-title">Personalised Notes</p>
+              <p class="body-sm">Add a handwritten note in your own words. Complimentary with every gift order.</p>
+            </div>
+          </div>
+          <div class="gifting-feature">
+            <div class="gifting-feat-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"/>
+              </svg>
+            </div>
+            <div>
+              <p class="gifting-feat-title">Pan-India Delivery</p>
+              <p class="body-sm">Carefully packed and delivered across India within 3–5 business days.</p>
+            </div>
+          </div>
+        </div>
+        <a href="pages/gifting.html" class="btn btn-primary reveal reveal-delay-3" style="margin-top:8px"><span>Explore Gift Sets</span></a>
+      </div>
+      <div class="gifting-image reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1607006344380-b6775a0824a7?w=800&q=85"
+             alt="Grace Home luxury gift box" loading="lazy">
+        <div class="gifting-tag" aria-hidden="true">Luxury Gifting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INSTAGRAM GALLERY ─────────────────────────────── -->
+<section class="section-pad-sm" aria-labelledby="instagram-title">
+  <div class="container">
+    <div class="section-header centered" style="margin-bottom:36px">
+      <p class="overline reveal">@gracehomecandles</p>
+      <h2 id="instagram-title" class="display-sm reveal reveal-delay-1">Follow the light</h2>
+    </div>
+  </div>
+  <div class="instagram-grid" role="list" aria-label="Instagram gallery">
+    <div class="insta-item reveal" role="listitem">
+      <img src="https://images.unsplash.com/photo-1602523961358-f9f03dd557db?w=400&q=80" alt="Candle lifestyle 1" loading="lazy">
+      <div class="insta-overlay" aria-hidden="true">
+        <svg class="insta-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/>
+        </svg>
+      </div>
+    </div>
+    <div class="insta-item reveal reveal-delay-1" role="listitem">
+      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&q=80" alt="Candle lifestyle 2" loading="lazy">
+      <div class="insta-overlay" aria-hidden="true"></div>
+    </div>
+    <div class="insta-item reveal reveal-delay-2" role="listitem">
+      <img src="https://images.unsplash.com/photo-1608181831718-6b9c7e1bda9f?w=400&q=80" alt="Candle lifestyle 3" loading="lazy">
+      <div class="insta-overlay" aria-hidden="true"></div>
+    </div>
+    <div class="insta-item reveal reveal-delay-3" role="listitem">
+      <img src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=80" alt="Candle lifestyle 4" loading="lazy">
+      <div class="insta-overlay" aria-hidden="true"></div>
+    </div>
+    <div class="insta-item reveal reveal-delay-4" role="listitem">
+      <img src="https://images.unsplash.com/photo-1543342384-1f1350e27861?w=400&q=80" alt="Candle lifestyle 5" loading="lazy">
+      <div class="insta-overlay" aria-hidden="true"></div>
+    </div>
+    <div class="insta-item reveal reveal-delay-4" role="listitem">
+      <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&q=80" alt="Candle lifestyle 6" loading="lazy">
+      <div class="insta-overlay" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ─────────────────────────────────────── -->
+<section class="newsletter-wrap" aria-labelledby="newsletter-title">
+  <div class="container">
+    <div class="newsletter-inner">
+      <p class="overline reveal">The Inner Circle</p>
+      <h2 id="newsletter-title" class="display-md reveal reveal-delay-1">First light, first access</h2>
+      <p class="body-md reveal reveal-delay-2">New collections, exclusive offers, and the quiet pleasures — delivered to your inbox. No noise, only grace.</p>
+      <form data-newsletter-form class="newsletter-form reveal reveal-delay-3" novalidate>
+        <label for="newsletter-email" class="visually-hidden">Email address</label>
+        <input type="email" id="newsletter-email" name="email" placeholder="Your email address" required autocomplete="email">
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note reveal reveal-delay-4">We respect your privacy. Unsubscribe at any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────── -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Grace <span>Home</span></div>
+        <p class="footer-brand-desc">Hand-poured luxury candles crafted with intention. We believe every home deserves a moment of grace.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+            </svg>
+          </a>
+          <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-heading">Shop</p>
+        <ul class="footer-links">
+          <li><a href="pages/shop.html">All Candles</a></li>
+          <li><a href="pages/shop.html?filter=bestseller">Bestsellers</a></li>
+          <li><a href="pages/shop.html?filter=new">New Arrivals</a></li>
+          <li><a href="pages/gifting.html">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Information</p>
+        <ul class="footer-links">
+          <li><a href="pages/about.html">Our Story</a></li>
+          <li><a href="pages/faq.html">FAQ</a></li>
+          <li><a href="pages/contact.html">Contact</a></li>
+          <li><a href="pages/shipping-policy.html">Shipping Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">Legal</p>
+        <ul class="footer-links">
+          <li><a href="pages/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="pages/terms.html">Terms & Conditions</a></li>
+          <li><a href="pages/return-policy.html">Return Policy</a></li>
+          <li><a href="pages/shipping-policy.html">Shipping Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="current-year">2025</span> Grace Home Candles. All rights reserved.</p>
+      <div class="footer-payment" aria-label="Accepted payment methods">
+        <span class="payment-icon">UPI</span>
+        <span class="payment-icon">Visa</span>
+        <span class="payment-icon">Mastercard</span>
+        <span class="payment-icon">RuPay</span>
+        <span class="payment-icon">NetBanking</span>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="pages/privacy-policy.html">Privacy</a>
+        <a href="pages/terms.html">Terms</a>
+        <a href="pages/return-policy.html">Returns</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Container -->
+<div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+<!-- Scripts -->
+<script src="js/products.js"></script>
+<script src="js/core.js"></script>
+<script>
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+
+  // Render featured products
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('featured-products-grid');
+    if (grid && typeof PRODUCTS !== 'undefined') {
+      const featured = PRODUCTS.filter(p => p.featured);
+      grid.innerHTML = featured.map((p, i) => renderProductCard(p, i)).join('');
+      ScrollReveal.init(); // Re-init after dynamic render
+
+      // Click to product page
+      grid.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('button')) return;
+          const id = card.dataset.productId;
+          window.location.href = `pages/product.html?id=${id}`;
+        });
+      });
+    }
+  });
+</script>
+</body>
+</html>
