@@ -82,7 +82,7 @@
             </div>
             <div>
               <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Email</p>
-              <a href="mailto:hello@gracehomecandles.in" style="font-family:var(--font-serif);font-size:18px;color:var(--espresso);transition:color 0.25s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--espresso)'">hello@gracehomecandles.in</a>
+              <a href="mailto:gracehomecandles@gmail.com" style="font-family:var(--font-serif);font-size:18px;color:var(--espresso);transition:color 0.25s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--espresso)'">gracehomecandles@gmail.com</a>
               <p style="font-size:12px;color:var(--muted);margin-top:4px">We respond within 24 hours</p>
             </div>
           </div>
@@ -93,7 +93,7 @@
             </div>
             <div>
               <p style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">WhatsApp</p>
-              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-serif);font-size:18px;color:var(--espresso);transition:color 0.25s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--espresso)'">+91 98765 43210</a>
+              <a href="https://wa.me/917900187209" target="_blank" rel="noopener noreferrer" style="font-family:var(--font-serif);font-size:18px;color:var(--espresso);transition:color 0.25s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--espresso)'">7900187209</a>
               <p style="font-size:12px;color:var(--muted);margin-top:4px">Mon–Sat, 10am–6pm IST</p>
             </div>
           </div>
@@ -113,7 +113,7 @@
           <div class="reveal reveal-delay-4" style="background:var(--cream);padding:28px 32px;border:1px solid var(--border)">
             <p style="font-family:var(--font-serif);font-size:18px;color:var(--espresso);margin-bottom:10px">Bulk & Corporate Gifting</p>
             <p style="font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:16px">Planning a corporate gifting programme or event? We offer custom packaging, personalised labels, and bulk pricing for orders of 10+.</p>
-            <a href="mailto:gifting@gracehomecandles.in" style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">gifting@gracehomecandles.in →</a>
+            <a href="mailto:gracehomecandles@gmail.com" style="font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);">gracehomecandles@gmail.com →</a>
           </div>
         </div>
       </div>
@@ -228,12 +228,12 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
       message: Security.sanitize(message),
       created_at: new Date().toISOString()
     });
-    successEl.textContent = 'Thank you for reaching out! We'll get back to you within 24 hours.';
+    successEl.textContent = 'Thank you for reaching out! We\'ll get back to you within 24 hours.';
     successEl.style.display = 'block';
     document.getElementById('contact-form').reset();
     Toast.show('Message sent successfully!', 'success');
   } catch (err) {
-    errorsEl.textContent = 'Something went wrong. Please try emailing us directly at hello@gracehomecandles.in';
+    errorsEl.textContent = 'Something went wrong. Please try emailing us directly at gracehomecandles@gmail.com';
     errorsEl.style.display = 'block';
   } finally {
     btn.disabled = false;

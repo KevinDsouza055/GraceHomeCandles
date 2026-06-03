@@ -162,9 +162,9 @@ vercel --prod
 
 ### Update Brand Info
 Search and replace across all files:
-- `gracehomecandles.in` → your actual domain
-- `hello@gracehomecandles.in` → your email
-- `+91 98765 43210` → your phone
+- `gracehomecandles.in` → your actual domain (e.g., gracehomecandles.in)
+- `hello@gracehomecandles.in` → `gracehomecandles@gmail.com`
+- `+91 98765 43210` → `+91 79001 87209`
 - `Bandra West, Mumbai` → your city
 - `400050` → your pincode
 
@@ -229,7 +229,7 @@ SELECT * FROM contact_messages WHERE is_read = FALSE ORDER BY created_at DESC;
 
 ## Support
 
-For any setup issues, email: hello@gracehomecandles.in
+For any setup issues, email: gracehomecandles@gmail.com
 
 ---
 

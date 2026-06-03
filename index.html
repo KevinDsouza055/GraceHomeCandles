@@ -63,12 +63,11 @@
 
 <!-- Mobile Navigation -->
 <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" aria-hidden="true">
-  <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Close menu">✕</button>
-  <a href="index.html" class="mobile-nav-link">Home</a>
-  <a href="pages/shop.html" class="mobile-nav-link">Shop</a>
-  <a href="pages/about.html" class="mobile-nav-link">Our Story</a>
-  <a href="pages/gifting.html" class="mobile-nav-link">Gifting</a>
-  <a href="pages/contact.html" class="mobile-nav-link">Contact</a>
+  <a href="index.html" class="mobile-nav-link" style="--i:1">Home</a>
+  <a href="pages/shop.html" class="mobile-nav-link" style="--i:2">Shop</a>
+  <a href="pages/about.html" class="mobile-nav-link" style="--i:3">Our Story</a>
+  <a href="pages/gifting.html" class="mobile-nav-link" style="--i:4">Gifting</a>
+  <a href="pages/contact.html" class="mobile-nav-link" style="--i:5">Contact</a>
 </nav>
 
 <!-- Site Header -->
@@ -136,14 +135,15 @@
 </section>
 
 <!-- ── MARQUEE / TICKER ──────────────────────────────── -->
-<div style="background:var(--espresso);padding:14px 0;overflow:hidden;white-space:nowrap" aria-hidden="true">
-  <div style="display:inline-flex;gap:60px;animation:marquee 30s linear infinite;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.5)">
+<div class="marquee-container" aria-hidden="true">
+  <div class="marquee-content">
     <span>Hand-poured</span><span style="color:var(--gold)">·</span>
     <span>60–80 Hour Burn</span><span style="color:var(--gold)">·</span>
     <span>Premium Fragrance Oils</span><span style="color:var(--gold)">·</span>
     <span>Sustainable Coconut-Soy Wax</span><span style="color:var(--gold)">·</span>
     <span>Free Shipping on ₹999+</span><span style="color:var(--gold)">·</span>
     <span>Luxury Gift Packaging</span><span style="color:var(--gold)">·</span>
+    <!-- Duplicated for seamless loop -->
     <span>Hand-poured</span><span style="color:var(--gold)">·</span>
     <span>60–80 Hour Burn</span><span style="color:var(--gold)">·</span>
     <span>Premium Fragrance Oils</span><span style="color:var(--gold)">·</span>
@@ -152,9 +152,6 @@
     <span>Luxury Gift Packaging</span>
   </div>
 </div>
-<style>
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-</style>
 
 <!-- ── FEATURED COLLECTION ───────────────────────────── -->
 <section class="section-pad" id="collection" aria-labelledby="collection-title">

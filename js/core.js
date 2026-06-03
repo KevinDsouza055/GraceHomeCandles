@@ -40,8 +40,8 @@ const Security = {
 
 /* ── CONFIG ────────────────────────────────────────────────── */
 const CONFIG = {
-  SUPABASE_URL:  'YOUR_SUPABASE_URL',
-  SUPABASE_KEY:  'YOUR_SUPABASE_ANON_KEY',
+  SUPABASE_URL:  'https://igiehnunaapgxefshrhi.supabase.co',
+  SUPABASE_KEY:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnaWVobnVuYWFwZ3hlZnNocmhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NzQ1MjQsImV4cCI6MjA5NjA1MDUyNH0.2Zla8WMuQDi0HAIurAhrEzBKNWjHCYwFsEGZTieRgYo',
   RAZORPAY_KEY:  'YOUR_RAZORPAY_KEY_ID',
   STORE_PINCODE: '400050',            // Your Mumbai warehouse pincode
   FREE_SHIP_ABOVE: 999,               // Free shipping threshold (₹)
@@ -314,6 +314,8 @@ const CartDrawer = {
   open() {
     if (!this.el) return;
     this.render();
+    this.el.style.visibility = 'visible';
+    this.el.style.opacity = '1';
     this.el.classList.add('open');
     if (this.overlay) this.overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -326,6 +328,12 @@ const CartDrawer = {
     if (this.overlay) this.overlay.classList.remove('open');
     document.body.style.overflow = '';
     this.el.setAttribute('aria-hidden', 'true');
+    setTimeout(() => {
+      if (!this.el.classList.contains('open')) {
+        this.el.style.visibility = 'hidden';
+        this.el.style.opacity = '0';
+      }
+    }, 450);
   },
 
   render() {
@@ -453,12 +461,15 @@ const MobileNav = {
   init() {
     const nav    = document.getElementById('mobile-nav');
     const toggle = document.getElementById('mobile-nav-toggle');
-    const close  = document.getElementById('mobile-nav-close');
     if (!nav) return;
-    const open  = () => { nav.classList.add('open'); document.body.style.overflow = 'hidden'; if(toggle) toggle.setAttribute('aria-expanded','true'); };
-    const shut  = () => { nav.classList.remove('open'); document.body.style.overflow = ''; if(toggle) toggle.setAttribute('aria-expanded','false'); };
+    const open  = () => { 
+      const isOpen = nav.classList.toggle('open');
+      toggle.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      toggle.setAttribute('aria-expanded', isOpen);
+    };
+    const shut  = () => { nav.classList.remove('open'); toggle.classList.remove('active'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded','false'); };
     if (toggle) toggle.addEventListener('click', open);
-    if (close)  close.addEventListener('click', shut);
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', shut));
     document.addEventListener('keydown', e => { if (e.key === 'Escape') shut(); });
   }
